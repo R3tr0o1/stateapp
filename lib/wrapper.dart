@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stateapp/Screens/home_screen.dart';
+import 'package:stateapp/Screens/home/home_screen.dart';
 import 'package:stateapp/services/auth_services.dart';
 
-import 'Screens/login.dart';
+import 'Screens/auth/login.dart';
 import 'models/user.dart';
 
 class Wraper extends StatefulWidget {

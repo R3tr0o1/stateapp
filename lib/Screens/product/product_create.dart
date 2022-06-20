@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:provider/provider.dart';
-import 'package:stateapp/Screens/home_screen.dart';
+import 'package:stateapp/Screens/home/home_screen.dart';
 import 'package:stateapp/common/authtextformfiel.dart';
 import 'package:stateapp/models/crud_model.dart';
 
-import '../models/product_list _model.dart';
+import '../../models/product_list _model.dart';
 
 class ProductCreationScreen extends StatefulWidget {
   const ProductCreationScreen({Key? key}) : super(key: key);
@@ -19,6 +19,8 @@ class _ProductCreationScreenState extends State<ProductCreationScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TextEditingController emailConorller = TextEditingController();
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -36,11 +38,15 @@ class _ProductCreationScreenState extends State<ProductCreationScreen> {
                   hinttext: 'price', controller: priceController),
               CommonAuthTextField(
                   hinttext: 'Description', controller: descriptionController),
+              CommonAuthTextField(
+                  hinttext: 'email', controller: emailConorller),
               ElevatedButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     await productProvider.addProduct(Product(
+                      user: User(email: emailConorller.text),
+                      // user: User.fromMap(),
                       name: nameController.text,
                       description: descriptionController.text,
                       price: priceController.text,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stateapp/models/product_list%20_model.dart';
 
-import '../common/common ratting.dart';
+import '../../common/common ratting.dart';
 
 class ProductPage extends StatelessWidget {
   final Product productDetails;
@@ -18,7 +18,7 @@ class ProductPage extends StatelessWidget {
         elevation: 0,
         title: Center(
           child: Text(
-            productDetails.name,
+            productDetails.name ,
             style: TextStyle(color: Colors.black),
           ),
         ),

@@ -1,18 +1,14 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:stateapp/Screens/login.dart';
-import 'package:stateapp/Screens/product_create.dart';
+import 'package:stateapp/Screens/auth/login.dart';
+import 'package:stateapp/Screens/product/product_create.dart';
 import 'package:stateapp/common/product_card.dart';
 import 'package:stateapp/models/crud_model.dart';
-
 import 'package:stateapp/models/product_list%20_model.dart';
 import 'package:stateapp/models/user.dart';
-
-import '../services/auth_services.dart';
+import '../../services/auth_services.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({
@@ -30,7 +26,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   late List<Userinfo> user;
   late TabController _tabController = TabController(length: 2, vsync: this);
 
-  // final items = Product.getProducts();
   @override
   Widget build(BuildContext context) {
     final productProvider = Provider.of<CRUDModel>(context);
@@ -64,6 +59,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             Padding(
               padding: EdgeInsets.only(left: 24, right: 24, top: 25),
               child: Container(
+                color: Colors.white,
                 child: Container(
                   decoration: BoxDecoration(
                       color: Colors.black,
@@ -104,9 +100,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               padding: EdgeInsets.only(left: 24, right: 24, top: 30),
               child: Container(
                   height: 500, //height of TabBarView
-                  decoration: BoxDecoration(
-                      border: Border(
-                          top: BorderSide(color: Colors.grey, width: 0.5))),
                   child: TabBarView(
                       controller: _tabController,
                       physics: NeverScrollableScrollPhysics(),
@@ -153,25 +146,5 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             )
           ]),
         ));
-    // body: Container(
-    //   child: StreamBuilder(
-    //       stream: productProvider.fetchProductsAsStream(),
-    //       builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-    //         if (snapshot.hasData) {
-    //           products = snapshot.data!.docs
-    //               .map((doc) => Product.fromMap(
-    //                   doc.data() as Map<String, dynamic>, doc.id))
-    //               .toList();
-    //           return ListView.builder(
-    //             itemCount: products.length,
-    //             itemBuilder: (buildContext, index) => ProductBox(
-    //               productDetails: products[index],
-    //             ),
-    //           );
-    //         } else {
-    //           return Text('fetcing ');
-    //         }
-    //       }),
-    // ));
   }
 }

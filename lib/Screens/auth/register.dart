@@ -3,12 +3,12 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:stateapp/Screens/login.dart';
+import 'package:stateapp/Screens/auth/login.dart';
 import 'package:stateapp/services/auth_services.dart';
 
-import '../common/authtextformfiel.dart';
-import '../models/crud_model.dart';
-import '../models/user.dart';
+import '../../common/authtextformfiel.dart';
+import '../../models/crud_model.dart';
+import '../../models/user.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
