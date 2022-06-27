@@ -39,13 +39,13 @@ class _ProductCreationScreenState extends State<ProductCreationScreen> {
               CommonAuthTextField(
                   hinttext: 'Description', controller: descriptionController),
               CommonAuthTextField(
-                  hinttext: 'email', controller: emailConorller),
+                  hinttext: 'Username', controller: emailConorller),
               ElevatedButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     await productProvider.addProduct(Product(
-                      user: User(email: emailConorller.text),
+                      user: User(userName: emailConorller.text),
                       // user: User.fromMap(),
                       name: nameController.text,
                       description: descriptionController.text,

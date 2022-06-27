@@ -19,7 +19,7 @@ class Product {
       : id = id,
         name = snapshot['name'] ?? ' ',
         description = snapshot['description'] ?? '',
-        user = User(email: snapshot["email"] ?? ''),
+        user = User(userName: snapshot["email"] ?? ''),
         price = snapshot['price'] ?? '';
 
   toJson() {
@@ -27,20 +27,20 @@ class Product {
       "name": name,
       "description": description,
       "price": price,
-      "user": {"email": user.email}
+      "user": {"UserName": user.userName}
     };
   }
 }
 
 class User {
-  String? email;
-  User({required this.email});
+  String? userName;
+  User({required this.userName});
 
   User.fromMap(Map<String, dynamic> snapshot) {
-    User(email: snapshot['UserName'] ?? '');
+    User(userName: snapshot['UserName'] ?? '');
   }
 
   toJson() {
-    return {"UserName": email};
+    return {"UserName": userName};
   }
 }
