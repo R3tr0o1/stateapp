@@ -4,12 +4,12 @@ import 'package:stateapp/models/product_list%20_model.dart';
 import '../../common/common ratting.dart';
 
 class ProductPage extends StatelessWidget {
-  final Product productDetails;
   ProductPage({
     Key? key,
     required this.productDetails,
   }) : super(key: key);
   late List<Product> products;
+  final Product productDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class ProductPage extends StatelessWidget {
         elevation: 0,
         title: Center(
           child: Text(
-            productDetails.name ,
+            productDetails.name,
             style: TextStyle(color: Colors.black),
           ),
         ),
@@ -40,7 +40,8 @@ class ProductPage extends StatelessWidget {
                           children: <Widget>[
                             Text(productDetails.price.toString(),
                                 style: TextStyle(fontWeight: FontWeight.bold)),
-                            Text(productDetails.description),
+                            Text(productDetails!.description),
+                            Text('hellooo git hub ------'),
                             Text("Price: " + productDetails.price.toString()),
                             RatingBox(),
                           ],

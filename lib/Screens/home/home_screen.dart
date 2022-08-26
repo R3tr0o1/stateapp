@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -5,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:stateapp/Screens/auth/login.dart';
 import 'package:stateapp/Screens/product/product_create.dart';
 import 'package:stateapp/common/product_card.dart';
+import 'package:stateapp/common/shimmer_card.dart';
 import 'package:stateapp/models/crud_model.dart';
 import 'package:stateapp/models/product_list%20_model.dart';
 import 'package:stateapp/models/user.dart';
@@ -99,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             Padding(
               padding: EdgeInsets.only(left: 24, right: 24, top: 30),
               child: Container(
-                  height: 500, //height of TabBarView
+                  height: 500,
                   child: TabBarView(
                       controller: _tabController,
                       physics: NeverScrollableScrollPhysics(),
@@ -115,6 +118,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                           doc.data() as Map<String, dynamic>,
                                           doc.id))
                                       .toList();
+
                                   return ListView.builder(
                                     itemCount: products.length,
                                     itemBuilder: (buildContext, index) =>
@@ -123,7 +127,11 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                     ),
                                   );
                                 } else {
-                                  return Text('fetcing ');
+                                  return ListView.builder(
+                                    itemCount: 10,
+                                    itemBuilder: (buildContext, index) =>
+                                        Shimmerloading(),
+                                  );
                                 }
                               }),
                         ),
@@ -138,8 +146,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                       doc.data() as Map<String, dynamic>,
                                       doc.id))
                                   .toList();
+                              return Text(user.map((e) => e.email).toString());
+                            } else {
+                              return CircularProgressIndicator();
                             }
-                            return Text(user.map((e) => e.email).toString());
                           },
                         ))
                       ])),
